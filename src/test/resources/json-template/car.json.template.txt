@@ -1,0 +1,11 @@
+{
+  "model": "{{model}}",
+  "engine": {
+    "hp": {{engine.hp}},
+    "isDiesel": {{engine.isDiesel}},
+    "manufacturer": {
+      "name": "Porsche",
+      "location": "{{engine.manufacturer.location}}"
+    }
+  }
+}

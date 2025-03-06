@@ -1,0 +1,11 @@
+{
+  "model": "911",
+  "engine": {
+    "hp": 300,
+    "isDiesel": true,
+    "manufacturer": {
+      "name": "Porsche",
+      "location": "Germany"
+    }
+  }
+}

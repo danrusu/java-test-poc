@@ -1,0 +1,6 @@
+{
+  "model": "911",
+  "engine.hp": 300,
+  "engine.isDiesel": true,
+  "engine.manufacturer.location": "Germany"
+}
