@@ -10,6 +10,10 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JsonTemplateTest {
+    public static Path JSON_TEMPLATE_TEST_RESOURCE_PATH = Paths.get("src",
+            "test",
+            "resources",
+            "json-template");
 
     @Test
     void testJsonTemplateValuesReplacement() throws IOException {
@@ -23,13 +27,7 @@ class JsonTemplateTest {
         assertEquals(expectedJsonString, finalJsonString);
     }
 
-
     private Path getTestJsonTemplateResourcePath(String resourceFileName) {
-        return Paths.get("src",
-                "test",
-                "resources",
-                "json-template",
-                resourceFileName
-        );
+        return JSON_TEMPLATE_TEST_RESOURCE_PATH.resolve(resourceFileName);
     }
 }
