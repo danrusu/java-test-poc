@@ -10,7 +10,8 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JsonTemplateTest {
-    public static Path JSON_TEMPLATE_TEST_RESOURCE_PATH = Paths.get("src",
+    public static Path JSON_TEMPLATE_TEST_RESOURCE_PATH = Paths.get(
+            "src",
             "test",
             "resources",
             "json-template");

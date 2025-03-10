@@ -1,6 +1,8 @@
-package com.testutils;
+package com.testutils.web;
 
+import com.testutils.UIBaseTest;
 import com.testutils.pom.HomePage;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,6 +11,8 @@ import static utils.DriverUtil.waitForPageToLoad;
 class UISmokeTest extends UIBaseTest {
 
     @Test
+    @Tag("ui-test")
+    @Tag("smoke-test")
     void testHomePageLoads() {
         driver.get("https://testutils.com");
 
