@@ -1,5 +1,9 @@
 package com.github.api;
 
+import io.restassured.RestAssured;
+import io.restassured.filter.log.LogDetail;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,14 +16,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GroovyVsJavaBodyParsingTest {
 
+    @BeforeAll
+    static void setup() {
+        RestAssured.baseURI = GITHUB_API_BASE_URL;
+        RestAssured.basePath = GITHUB_SEARCH_REPOSITORIES_ENDPOINT;
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.HEADERS);
+    }
+
+    @AfterAll
+    static void teardown() {
+        RestAssured.reset();
+    }
+
     @Test
     @GithubApiTest
     void allResultsMustBeJavaRepos_GroovyParsing() {
         given()
-                .baseUri(GITHUB_API_BASE_URL)
                 .queryParam("q", "Java")
                 // https://api.github.com/search/repositories?q=Java
-                .get(GITHUB_SEARCH_REPOSITORIES_ENDPOINT)
+                .get()
 
                 .then()
                 // harder to debug
@@ -33,10 +48,8 @@ class GroovyVsJavaBodyParsingTest {
     void allResultsMustBeJavaRepos_JavaParsing() {
 
         List<String> languages = given()
-                .baseUri(GITHUB_API_BASE_URL)
                 .queryParam("q", "Java")
-                .log().all()
-                .get(GITHUB_SEARCH_REPOSITORIES_ENDPOINT)
+                .get()
 
                 .jsonPath()
                 .getList("items.language");
