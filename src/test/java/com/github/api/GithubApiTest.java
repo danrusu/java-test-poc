@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Tag;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Tag("api-test")
