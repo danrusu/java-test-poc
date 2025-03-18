@@ -1,19 +1,18 @@
 package com.testutils.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Message {
-    @JsonProperty("subject")
-    public String subject;
-    @JsonProperty("body")
-    public String text;
+    private final String subject;
+    private final String text;
 
-    public Message() {
-    }
-
-    public Message(String subject, String text) {
+    @JsonCreator // redundant
+    public Message(
+            @JsonProperty("subject") String subject,
+            @JsonProperty("body") String text) {
         this.subject = subject;
         this.text = text;
     }
