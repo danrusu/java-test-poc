@@ -1,6 +1,6 @@
 package com.testutils.web;
 
-import com.testutils.UIBaseTest;
+import com.base.UIBaseTest;
 import com.testutils.pom.HomePage;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
