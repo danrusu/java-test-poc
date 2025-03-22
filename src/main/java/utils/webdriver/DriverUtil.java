@@ -1,4 +1,4 @@
-package utils;
+package utils.webdriver;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -6,10 +6,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.base.StaticClass;
 
 import java.time.Duration;
 
+import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
+import static utils.logger.SimpleLogger.log;
 
 public class DriverUtil extends StaticClass {
     public static final int DEFAULT_PAGE_LOAD_SECONDS_TIMEOUT = 30;
@@ -20,6 +23,7 @@ public class DriverUtil extends StaticClass {
     // You can set the browser from CLI, i.e. pass -Dbrowser=edge as VM argument
     public static WebDriver newDriver() {
         final String browser = System.getProperty("browser", CHROME_BROWSER).toLowerCase();
+        log(format("TESTING ON \"%s\"%n", browser));
         return switch (browser) {
             case CHROME_BROWSER -> new ChromeDriver();
             case FIREFOX_BROWSER -> new FirefoxDriver();

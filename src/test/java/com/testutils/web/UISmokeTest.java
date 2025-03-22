@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static utils.DriverUtil.waitForPageToLoad;
+import static utils.webdriver.DriverUtil.waitForPageToLoad;
 
 class UISmokeTest extends UIBaseTest {
 

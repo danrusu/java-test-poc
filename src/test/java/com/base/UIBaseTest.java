@@ -4,7 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 
-import static utils.DriverUtil.newDriver;
+import static utils.webdriver.DriverUtil.newDriver;
 
 public class UIBaseTest {
     protected WebDriver driver;
