@@ -10,7 +10,7 @@ mvn test -Dtest=JsonTemplateTest
 # run tests by tags
 mvn test -Dgroups="smoke-test"
 
-mvn test -Dgroups="ui-test"
+mvn test -Dgroups="ui-test" -Dbrowser=edge #defaultBrowser = chrome
 
 mvn test -Dgroups=api-test
 
