@@ -12,11 +12,11 @@ public class SimpleLogger extends StaticClass {
     public static final Logger LOGGER = new SLogger().getLogger();
     public static final Level DEFAULT_LOG_LEVEL = INFO;
 
-    public static void log(Level level, String text) {
-        LOGGER.log(new LogRecord(level, text));
-    }
-
     public static void log(String text) {
         log(DEFAULT_LOG_LEVEL, text);
+    }
+
+    public static void log(Level level, String text) {
+        LOGGER.log(new LogRecord(level, text));
     }
 }

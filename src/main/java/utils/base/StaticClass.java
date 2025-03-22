@@ -5,6 +5,6 @@ public class StaticClass {
         throw new StaticClassException();
     }
 
-    public static class StaticClassException extends RuntimeException {
+    private static class StaticClassException extends RuntimeException {
     }
 }
