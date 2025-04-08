@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>poc</title>
+</head>
+
+<body>
+<button id="load" onclick="load()">LOAD</button>
+
+<div id="status"></div>
+<script>
+    function load(){
+        const statusElement = document.getElementById('status');
+        setTimeout(
+            () => { statusElement.innerHTML = '<span role="alert">Loading...</span>'; },
+            2000
+        );
+        setTimeout(
+            () => { statusElement.innerHTML = 'loaded'; },
+            5000
+        );
+    }
+</script>
+</body>
+
+</html>
