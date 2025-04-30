@@ -8,8 +8,6 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static utils.logger.SimpleLogger.log;
-
 public class FileUtils extends StaticClass {
     public static List<Path> getFiles(Path folderPath) throws IOException {
         try (Stream<Path> filePaths = Files.walk(folderPath)) {
@@ -19,21 +17,11 @@ public class FileUtils extends StaticClass {
         }
     }
 
-    public static List<Path> getDownloadedFiles() throws IOException {
-        return getFiles(getDownloadsPath());
-    }
-
-    public static void cleanDownloads() throws IOException {
-        getFiles(getDownloadsPath()).forEach(filePath -> {
-            try {
-                Files.deleteIfExists(filePath);
-            } catch (IOException e) {
-                log("Cannot delete file: " + filePath);
-            }
-        });
-    }
-
-    public static Path getDownloadsPath() {
-        return Path.of(System.getProperty("user.dir"), "downloads");
+    public static void deleteFile(Path filePath) {
+        try {
+            Files.deleteIfExists(filePath);
+        } catch (IOException e) {
+            throw new DeleteFileException(filePath, e);
+        }
     }
 }

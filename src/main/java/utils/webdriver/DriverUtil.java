@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
-import static utils.file.FileUtils.getDownloadsPath;
+import static utils.file.DownloadUtils.getDownloadsPath;
 import static utils.logger.SimpleLogger.log;
 
 public class DriverUtil extends StaticClass {
