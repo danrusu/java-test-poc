@@ -17,7 +17,7 @@ import static utils.logger.SimpleLogger.log;
 import static utils.webdriver.DevToolsUtil.getDevToolsSession;
 import static utils.webdriver.DriverUtil.waitForPageToLoad;
 
-public class DevToolsPoc extends UIBaseTest {
+class DevToolsTest extends UIBaseTest {
     @Test
     void testRequests() {
         DevTools devTools = getDevToolsSession(driver);
