@@ -24,4 +24,9 @@ public class FileUtils extends StaticClass {
             throw new DeleteFileException(filePath, e);
         }
     }
+
+    public static Path getLocalFilePath(Path projectRelativeFilePath) {
+        String userDir = System.getProperty("user.dir");
+        return Path.of(userDir).resolve(projectRelativeFilePath);
+    }
 }

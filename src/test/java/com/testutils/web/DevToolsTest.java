@@ -4,9 +4,9 @@ import com.base.UIBaseTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v131.network.Network;
-import org.openqa.selenium.devtools.v131.network.model.Request;
-import org.openqa.selenium.devtools.v131.network.model.Response;
+import org.openqa.selenium.devtools.v136.network.Network;
+import org.openqa.selenium.devtools.v136.network.model.Request;
+import org.openqa.selenium.devtools.v136.network.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static utils.logger.SimpleLogger.log;
+import static utils.webdriver.DevToolsUtil.enableNetwork;
 import static utils.webdriver.DevToolsUtil.getDevToolsSession;
 import static utils.webdriver.DriverUtil.waitForPageToLoad;
 
@@ -42,10 +43,10 @@ class DevToolsTest extends UIBaseTest {
         assertFalse(urls.isEmpty());
     }
 
-
     @Test
     void testResponses() {
         DevTools devTools = getDevToolsSession(driver);
+        enableNetwork(devTools);
 
         List<Integer> statusCodes = new ArrayList<>();
         try {

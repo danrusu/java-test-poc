@@ -1,6 +1,7 @@
 package utils.webdriver;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.base.StaticClass;
 
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +31,7 @@ public class DriverUtil extends StaticClass {
 
     // You can set the browser from CLI, i.e. pass -Dbrowser=edge as VM argument
     public static WebDriver newDriver() {
-        final String browser = System.getProperty("browser", CHROME_BROWSER).toLowerCase();
+        final String browser = System.getProperty("browser", EDGE_BROWSER).toLowerCase();
         log(format("TESTING ON \"%s\"%n", browser));
         return switch (browser) {
             case CHROME_BROWSER -> newCustomChromeDriver();
@@ -54,21 +56,64 @@ public class DriverUtil extends StaticClass {
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("download.prompt_for_download", false);
         prefs.put("download.default_directory", getDownloadsPath().toString());
-
+        prefs.put("safebrowsing.enabled", true);
+        //prefs.put("profile.managed_insecure_content_allowed_for_urls", "[\"\"]");
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
-
+        options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.ACCEPT);
         return new ChromeDriver(options);
     }
 
     private static WebDriver newCustomEdgeDriver() {
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("download.default_directory", getDownloadsPath().toString());
+        // latest driver manually downloaded
+        String driverPath = Paths.get(
+                System.getProperty("user.dir"),
+                "drivers",
+                "msedgedriver.exe"
+        ).toString();
+        log("driver:", driverPath);
+        System.setProperty("webdriver.edge.driver", driverPath);
+
+        // Download options ???
+
 
         EdgeOptions options = new EdgeOptions();
-        options.setExperimentalOption("prefs", prefs);
+        if (System.getProperty("headless", "false").equalsIgnoreCase("true")) {
+            options.addArguments("headless=true");
+        }
+
+        loadCustomUserProfile(options);
+
+        //setLocalDownloadsOptions(options);
 
         return new EdgeDriver(options);
+    }
+
+    private static void setLocalDownloadsOptions(EdgeOptions options) {
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("download.default_directory", getDownloadsPath().toString());
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("download.directory_upgrade", true);
+        options.setExperimentalOption("prefs", prefs);
+    }
+
+    private static void loadCustomUserProfile(EdgeOptions options) {
+        // load custom user profile
+        // path of the profile (User Data folder)
+        String userDataFolder = Paths.get("C:",
+                        "Users",
+                        "Alexandru Mutescul",
+                        "AppData",
+                        "Local",
+                        "Microsoft",
+                        "Edge",
+                        "User Data")
+                .toAbsolutePath()
+                .toString();
+
+        options.addArguments("user-data-dir=" + userDataFolder);
+        // user profile folder
+        options.addArguments("profile-directory=Default");
     }
 
     private static WebDriver newCustomFirefoxDriver() {

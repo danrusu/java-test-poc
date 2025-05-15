@@ -12,9 +12,10 @@ import java.nio.file.Paths;
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBe;
+import static utils.file.FileUtils.getLocalFilePath;
 
 class LoadingPageTest extends UIBaseTest {
-    public static Path HTML_LOCAL_PATH = Paths.get(
+    public static final Path HTML_LOCAL_PATH = Paths.get(
             "src",
             "test",
             "resources",
@@ -22,8 +23,7 @@ class LoadingPageTest extends UIBaseTest {
 
     @Test
     void testLoading() {
-        String userDir = System.getProperty("user.dir");
-        Path htmlPath = Path.of(userDir).resolve(HTML_LOCAL_PATH);
+        Path htmlPath = getLocalFilePath(HTML_LOCAL_PATH);
 
         driver.get("file://" + htmlPath);
 

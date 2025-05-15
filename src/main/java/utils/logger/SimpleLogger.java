@@ -16,6 +16,10 @@ public class SimpleLogger extends StaticClass {
         log(DEFAULT_LOG_LEVEL, text);
     }
 
+    public static void log(String... text) {
+        log(String.join(" ", text));
+    }
+
     public static void log(Level level, String text) {
         LOGGER.log(new LogRecord(level, text));
     }
