@@ -1,11 +1,11 @@
 {
-  "model": "{{model}}",
+  "model": "$-{model}",
   "engine": {
-    "hp": {{engine.hp}},
-    "isDiesel": {{engine.isDiesel}},
+    "hp": $-{engine.hp},
+    "isDiesel": $-{engine.isDiesel},
     "manufacturer": {
       "name": "Porsche",
-      "location": "{{engine.manufacturer.location}}"
+      "location": "$-{engine.manufacturer.location}"
     }
   }
 }

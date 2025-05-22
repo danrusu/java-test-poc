@@ -21,14 +21,14 @@ public class JsonTemplate {
 
         String finalJsonString = templateString;
         for (Map.Entry<String, Object> entry : replacementMap.entrySet()) {
-            String target = String.format("{{%s}}", entry.getKey());
+            String target = String.format("$-{%s}", entry.getKey());
             String replacement = String.format("%s", entry.getValue());
             finalJsonString = finalJsonString.replace(target, replacement);
         }
-        if (finalJsonString.contains("{{")) {
+        if (finalJsonString.contains("$-{")) {
             throw new RuntimeException("not all templates were replaced");
         }
-        
+
         return finalJsonString;
     }
 }

@@ -1,4 +1,4 @@
-package com.testutils.pom;
+package pom;
 
 import org.openqa.selenium.WebDriver;
 
