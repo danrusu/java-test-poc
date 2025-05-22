@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JsonTemplate {
-    public static String getJson(Path templatePath, Path jsonValuesPath) throws IOException {
+    public static String getJson(Path templatePath, Path valuesReplacements) throws IOException {
         final String templateString = Files.readString(templatePath);
-        final String valuesJsonString = Files.readString(jsonValuesPath);
+        final String valuesJsonString = Files.readString(valuesReplacements);
 
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<HashMap<String, Object>> typeRef = new TypeReference<>() {
@@ -21,6 +21,22 @@ public class JsonTemplate {
 
         String finalJsonString = templateString;
         for (Map.Entry<String, Object> entry : replacementMap.entrySet()) {
+            String target = String.format("$-{%s}", entry.getKey());
+            String replacement = String.format("%s", entry.getValue());
+            finalJsonString = finalJsonString.replace(target, replacement);
+        }
+        if (finalJsonString.contains("$-{")) {
+            throw new RuntimeException("not all templates were replaced");
+        }
+
+        return finalJsonString;
+    }
+
+    public static String getJson(Path templatePath, Map<String, Object> valuesReplacements) throws IOException {
+        final String templateString = Files.readString(templatePath);
+
+        String finalJsonString = templateString;
+        for (Map.Entry<String, Object> entry : valuesReplacements.entrySet()) {
             String target = String.format("$-{%s}", entry.getKey());
             String replacement = String.format("%s", entry.getValue());
             finalJsonString = finalJsonString.replace(target, replacement);
