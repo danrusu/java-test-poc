@@ -1,7 +1,7 @@
 package poc;
 
-import json.JsonTemplate;
 import org.junit.jupiter.api.Test;
+import utils.json.JsonTemplate;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JsonTemplateTest {
-    public static Path JSON_TEMPLATE_TEST_RESOURCE_PATH = Paths.get(
+    public static Path jsonTemplateTestResourcePath = Paths.get(
             "src",
             "test",
             "resources",
@@ -49,6 +49,6 @@ class JsonTemplateTest {
     }
 
     private Path getTestJsonTemplateResourcePath(String resourceFileName) {
-        return JSON_TEMPLATE_TEST_RESOURCE_PATH.resolve(resourceFileName);
+        return jsonTemplateTestResourcePath.resolve(resourceFileName);
     }
 }

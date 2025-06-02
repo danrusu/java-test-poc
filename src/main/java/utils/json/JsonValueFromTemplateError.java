@@ -1,4 +1,4 @@
-package json;
+package utils.json;
 
 public class JsonValueFromTemplateError extends Error {
     public JsonValueFromTemplateError() {
