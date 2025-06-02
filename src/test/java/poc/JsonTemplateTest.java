@@ -12,11 +12,14 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JsonTemplateTest {
-    public static Path jsonTemplateTestResourcePath = Paths.get(
+    private static final String JSON_TEMPLATE_PATTERN = "$-{%s}";
+    public static final Path jsonTemplateTestResourcePath = Paths.get(
             "src",
             "test",
             "resources",
             "json-template");
+    private final JsonTemplate jsonTemplate = new JsonTemplate(JSON_TEMPLATE_PATTERN);
+
 
     @Test
     void testJsonTemplateValuesReplacement() throws IOException {
@@ -25,7 +28,7 @@ class JsonTemplateTest {
         Path expectedJsonPath = getTestJsonTemplateResourcePath("car.values.expected.json");
         String expectedJsonString = Files.readString(expectedJsonPath);
 
-        String finalJsonString = JsonTemplate.getJson(templatePath, valuesPath);
+        String finalJsonString = jsonTemplate.getJson(templatePath, valuesPath);
 
         assertEquals(expectedJsonString, finalJsonString);
     }
@@ -41,7 +44,7 @@ class JsonTemplateTest {
                 "engine.isDiesel", true,
                 "engine.manufacturer.location", "Germany"
         );
-        String finalJsonString = JsonTemplate.getJson(templatePath, replacementMap);
+        String finalJsonString = jsonTemplate.getJson(templatePath, replacementMap);
 
         Path expectedJsonPath = getTestJsonTemplateResourcePath("car.values.expected.json");
         String expectedJsonString = Files.readString(expectedJsonPath);
