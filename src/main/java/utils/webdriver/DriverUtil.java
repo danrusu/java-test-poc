@@ -31,7 +31,7 @@ public class DriverUtil extends StaticClass {
 
     // You can set the browser from CLI, i.e. pass -Dbrowser=edge as VM argument
     public static WebDriver newDriver() {
-        final String browser = System.getProperty("browser", EDGE_BROWSER).toLowerCase();
+        final String browser = System.getProperty("browser", CHROME_BROWSER).toLowerCase();
         log(format("TESTING ON \"%s\"%n", browser));
         return switch (browser) {
             case CHROME_BROWSER -> newCustomChromeDriver();
