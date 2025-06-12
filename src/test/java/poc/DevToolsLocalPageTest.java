@@ -36,8 +36,8 @@ class DevToolsLocalPageTest extends UIBaseTest {
         Path htmlPath = getLocalFilePath(HTML_LOCAL_PATH);
         driver.get("file://" + htmlPath);
 
-        driver.findElement(By.id("action")).click();
-        WebElement resultElement = driver.findElement(By.id("result"));
+        findElement(By.id("action")).click();
+        WebElement resultElement = findElement(By.id("result"));
 
         wait.until((WebDriver driver) ->
                 resultElement.getText().equals(EXPECTED_RESULT_TEXT));
@@ -78,7 +78,7 @@ class DevToolsLocalPageTest extends UIBaseTest {
                 });
             });
 
-            driver.findElement(By.id("action")).click();
+            findElement(By.id("action")).click();
 
             AtomicReference<String> requestId = new AtomicReference<>();
             wait.until((WebDriver driver) -> {
@@ -111,7 +111,7 @@ class DevToolsLocalPageTest extends UIBaseTest {
             devTools.close();
         }
 
-        WebElement resultElement = driver.findElement(By.id("result"));
+        WebElement resultElement = findElement(By.id("result"));
         assertEquals(resultElement.getText(), EXPECTED_RESULT_TEXT);
 
         log("\n****** ALL REQUESTS *****");

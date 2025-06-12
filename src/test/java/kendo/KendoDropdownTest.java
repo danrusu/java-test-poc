@@ -3,10 +3,9 @@ package kendo;
 import com.base.UIBaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.KendoWebComponent;
+import pom.KendoWebComponent;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 public class KendoDropdownTest extends UIBaseTest {
     public static final String KENDO_DROPDOWN_LIST_URL =

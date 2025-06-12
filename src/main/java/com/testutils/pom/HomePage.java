@@ -19,14 +19,14 @@ public class HomePage extends BasePage {
     }
 
     public String getPageHeader() {
-        return getDriver().findElement(pageHeader).getText();
+        return findElement(pageHeader).getText();
     }
 
     public String getPageDescription() {
-        return getDriver().findElement(pageDescription).getText();
+        return findElement(pageDescription).getText();
     }
 
     public List<WebElement> getSections() {
-        return getDriver().findElements(sections);
+        return findElements(sections);
     }
 }
