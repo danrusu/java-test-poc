@@ -1,21 +1,20 @@
-package kendo;
+package pom.kendo;
 
 import com.base.UIBaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pom.KendoWebComponent;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class KendoDropdownTest extends UIBaseTest {
+public class DropdownListTest extends UIBaseTest {
     public static final String KENDO_DROPDOWN_LIST_URL =
             "https://demos.telerik.com/kendo-angular-ui/demos/dropdowns/dropdownlist/basic_usage" +
                     "?theme=default-ocean-blue-a11y";
-    public KendoWebComponent kendoWebComponent;
+    public DropDownList kendoWebComponent;
 
     @BeforeEach
     void beforeEach() {
-        kendoWebComponent = new KendoWebComponent(driver);
+        kendoWebComponent = new DropDownList(driver);
     }
 
     @Test

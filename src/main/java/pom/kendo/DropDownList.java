@@ -1,4 +1,4 @@
-package pom;
+package pom.kendo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,14 +8,14 @@ import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class KendoWebComponent {
+public class DropDownList {
     public static final By DROPDOWN_LIST_SELECTOR = By.cssSelector("kendo-dropdownlist");
     public static final String DROPDOWN_LIST_POPUP_TAG_SELECTOR = "kendo-popup";
 
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    public KendoWebComponent(WebDriver driver) {
+    public DropDownList(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
