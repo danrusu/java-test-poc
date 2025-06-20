@@ -47,6 +47,16 @@ public class BasePage {
     }
 
     public List<WebElement> findElements(By elementSelector) {
-        return driver.findElements(elementSelector);
+        long currentImplicitWait = driver.manage().timeouts().getImplicitWaitTimeout().getSeconds();
+        implicitlyWait(0);
+        try {
+            return driver.findElements(elementSelector);
+        } finally {
+            implicitlyWait(currentImplicitWait);
+        }
+    }
+
+    public void implicitlyWait(long seconds) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
     }
 }
