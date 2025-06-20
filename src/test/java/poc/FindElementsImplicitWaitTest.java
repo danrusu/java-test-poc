@@ -33,11 +33,11 @@ public class FindElementsImplicitWaitTest extends UIBaseTest {
         implicitlyWait(1);
         var cars = findElements("car");
         assertEquals(2, cars.size());
-        var newCars = findElements("new-car"); // is added to DOM after 3 seconds
+        var newCars = findElements("new-car"); // .new-car element is added to DOM after 3 seconds
         assertEquals(0, newCars.size());
 
         implicitlyWait(2);
-        newCars = findElements("new-car"); // is added to DOM after 3 seconds
+        newCars = findElements("new-car");
         assertEquals(1, newCars.size());
     }
 
