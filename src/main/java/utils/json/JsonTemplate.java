@@ -44,7 +44,7 @@ public class JsonTemplate {
     public void assertTemplateIsComplete(String jsonStringFromTemplate) {
         final String templateStartPattern = this.templatePattern.split("%s")[0];
         if (jsonStringFromTemplate.contains(templateStartPattern)) {
-            throw new JsonValueFromTemplateError();
+            throw new JsonValueFromTemplateException();
         }
     }
 }
