@@ -22,12 +22,10 @@ public class FindElementsImplicitWaitTest extends UIBaseTest {
             "test",
             "resources",
             "find-elements-implicit-wait.html");
-    Path htmlPath;
 
     @BeforeEach
     void setUp() {
-        htmlPath = getLocalFilePath(HTML_LOCAL_PATH);
-        driver.get("file://" + htmlPath);
+        driver.get("file://" + getLocalFilePath(HTML_LOCAL_PATH));
     }
 
     @Test
