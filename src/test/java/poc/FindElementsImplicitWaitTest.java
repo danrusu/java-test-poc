@@ -1,6 +1,7 @@
 package poc;
 
 import com.base.UIBaseTest;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -26,6 +27,11 @@ public class FindElementsImplicitWaitTest extends UIBaseTest {
     @BeforeEach
     void setUp() {
         driver.get("file://" + getLocalFilePath(HTML_LOCAL_PATH));
+    }
+
+    @AfterEach
+    void tearDown() {
+        implicitlyWait(0);
     }
 
     @Test
