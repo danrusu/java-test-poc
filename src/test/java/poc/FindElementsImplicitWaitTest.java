@@ -54,7 +54,7 @@ public class FindElementsImplicitWaitTest extends UIBaseTest {
                 driver.manage().timeouts().getImplicitWaitTimeout().getSeconds() +
                 " seconds");
 
-        // waits implicitWait and then find elements
+        // wait implicitWait and then find elements
         var elements = driver.findElements(By.className(className));
 
         System.out.println(className + " elements: " + elements.size());
